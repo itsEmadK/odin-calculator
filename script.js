@@ -56,6 +56,12 @@ operatorButtons.forEach((btn) => {
     })
 });
 
+clearButton.addEventListener("click", () => {
+    calcDisplay.innerText = "0";
+    calcMiniDisplay.innerText = "0";
+    [A, B, operator] = [null, null, null];
+})
+
 function Calculator() {
     this.add = (a, b) => +a + +b;
     this.sub = (a, b) => a - b;
