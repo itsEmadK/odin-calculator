@@ -3,3 +3,11 @@
     margin: 0px;
     box-sizing: border-box;
 }
+
+.calculator-container {
+    padding: 16px;
+    width: 400px;
+    border-radius: 10px;
+    border: 2px solid black;
+    background-color: gray;
+}
