@@ -25,3 +25,7 @@
     border-radius: 5px;
     margin-bottom: 10px;
 }
+
+.button.clear {
+    background-color: tomato;
+}
