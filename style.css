@@ -25,6 +25,16 @@ body {
     border-radius: 5px;
     padding: 12px 12px 24px;
     margin-bottom: 20px;
+    text-align: end;
+}
+
+.calculator-mini-display {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.calculator-display {
+    font-size: 40px;
 }
 
 .buttons-container {
