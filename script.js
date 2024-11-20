@@ -28,8 +28,6 @@ digitButtons.forEach((btn) => {
 operatorButtons.forEach((btn) => {
     btn.addEventListener("click", (e) => {
         let newOperator = e.target.innerText;
-        if (newOperator === "×") newOperator = "*";
-        if (newOperator === "÷") newOperator = "/";
         if (newOperator != "=") {
             if (B === null) {
                 operator = newOperator;
@@ -57,9 +55,9 @@ function Calculator() {
                 return this.add(a, b);
             case "-":
                 return this.sub(a, b);
-            case "*":
+            case "×":
                 return this.multiply(a, b);
-            case "/":
+            case "÷":
                 return this.divide(a, b);
             default:
                 break;
