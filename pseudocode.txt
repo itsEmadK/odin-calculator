@@ -1,0 +1,31 @@
+Init DISPLAY, MINI-DISPLAY  to “”
+Init A, OPERATOR, B to NULL.
+When the user clicks a button:
+    if the button is a digit:
+        if OPERATOR is NULL:
+            append the new digit to A
+            show A on the DISPLAY
+        else:
+            append the new digit to B
+            show B on the DISPLAY
+
+    else if the button is an operator:
+        if B is NULL:
+            assign the new operator to OPERATOR
+        else:
+            assign (A OPERATOR B) to A
+            show A on the DISPLAY
+            assign NULL to B
+            assign the new operator to OPERATOR
+
+    else if the button is ‘clear’:
+        assign NULL to A, B, OPERATOR
+        clear the DISPLAY
+
+    else if the button is 'backspace':
+        if OPERATOR is NULL:
+            remove the last digit of A
+            show A on the DISPLAY
+        else:
+            remove the last digit of B
+            show B on the DISPLAY
