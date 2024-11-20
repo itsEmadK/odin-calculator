@@ -34,7 +34,6 @@ operatorButtons.forEach((btn) => {
                 calcMiniDisplay.innerHTML += " " + newOperator;
             } else {
                 A = calculator.operate(A, B, operator);
-                console.log(A);
                 calcDisplay.innerText = A;
                 calcMiniDisplay.innerHTML = A + " " + newOperator;
                 B = null;
