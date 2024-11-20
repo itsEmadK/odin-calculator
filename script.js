@@ -24,6 +24,25 @@ digitButtons.forEach((btn) => {
     });
 });
 
+operatorButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        let newOperator = e.target.innerText;
+        if (newOperator === "×") newOperator = "*";
+        if (newOperator === "÷") newOperator = "/";
+        if (newOperator != "=") {
+            if (B === null) {
+                operator = newOperator;
+            } else {
+                A = calculator.operate(A, B, operator);
+                console.log(A);
+                calcDisplay.innerText = A;
+                B = null;
+                operator = newOperator;
+            }
+        }
+    })
+});
+
 function Calculator() {
     this.add = (a, b) => a + b;
     this.sub = (a, b) => a - b;
