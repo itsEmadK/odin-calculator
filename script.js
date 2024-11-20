@@ -3,16 +3,16 @@ let calculator = {
     sub: (a, b) => a - b,
     multiply: (a, b) => a * b,
     divide: (a, b) => a / b,
-    operate: (a, b, operator) => {
+    operate: function (a, b, operator) {
         switch (operator) {
             case "+":
-                return add(a, b);
+                return this.add(a, b);
             case "-":
-                return sub(a, b);
+                return this.sub(a, b);
             case "*":
-                return multiply(a, b);
+                return this.multiply(a, b);
             case "/":
-                return divide(a, b);
+                return this.divide(a, b);
             default:
                 break;
         }
