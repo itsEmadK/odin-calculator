@@ -17,6 +17,7 @@ digitButtons.forEach((btn) => {
         if (operator === null) {
             A = +((A ?? "") + digit);
             calcDisplay.innerText = A;
+            calcMiniDisplay.innerHTML = A;
         } else {
             B = +((B ?? "") + digit);
             calcDisplay.innerText = B;
@@ -32,10 +33,12 @@ operatorButtons.forEach((btn) => {
         if (newOperator != "=") {
             if (B === null) {
                 operator = newOperator;
+                calcMiniDisplay.innerHTML += " " + newOperator;
             } else {
                 A = calculator.operate(A, B, operator);
                 console.log(A);
                 calcDisplay.innerText = A;
+                calcMiniDisplay.innerHTML = A + " " + newOperator;
                 B = null;
                 operator = newOperator;
             }
