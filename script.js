@@ -58,7 +58,7 @@ function Calculator() {
             case "×":
                 return this.multiply(a, b);
             case "÷":
-                return this.divide(a, b);
+                return this.divide(a, b).toFixed(5);
             default:
                 break;
         }
