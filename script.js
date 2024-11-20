@@ -4,6 +4,7 @@ const CALCULATOR_DISPLAY_SELECTOR = ".calculator-display";
 const CALCULATOR_MINI_DISPLAY_SELECTOR = ".calculator-mini-display";
 
 const calculator = new Calculator();
+let A, B, operator = null;
 
 const calcDisplay = document.querySelector(CALCULATOR_DISPLAY_SELECTOR);
 const calcMiniDisplay = document.querySelector(CALCULATOR_MINI_DISPLAY_SELECTOR);
