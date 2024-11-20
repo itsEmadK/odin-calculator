@@ -1,9 +1,11 @@
-let calculator = {
-    add: (a, b) => a + b,
-    sub: (a, b) => a - b,
-    multiply: (a, b) => a * b,
-    divide: (a, b) => a / b,
-    operate: function (a, b, operator) {
+let calculator = new Calculator();
+
+function Calculator() {
+    this.add = (a, b) => a + b;
+    this.sub = (a, b) => a - b;
+    this.multiply = (a, b) => a * b;
+    this.divide = (a, b) => a / b;
+    this.operate = function (a, b, operator) {
         switch (operator) {
             case "+":
                 return this.add(a, b);
@@ -16,5 +18,5 @@ let calculator = {
             default:
                 break;
         }
-    }
+    };
 }
