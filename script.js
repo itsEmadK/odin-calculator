@@ -2,7 +2,7 @@ let calculator = {
     add: (a, b) => a + b,
     sub: (a, b) => a - b,
     multiply: (a, b) => a * b,
-    division: (a, b) => a / b,
+    divide: (a, b) => a / b,
     operate: (a, b, operator) => {
         switch (operator) {
             case "+":
