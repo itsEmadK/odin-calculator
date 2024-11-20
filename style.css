@@ -29,3 +29,7 @@
 .button.clear {
     background-color: tomato;
 }
+
+.button.delete {
+    background-color: cornflowerblue;
+}
