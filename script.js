@@ -1,4 +1,4 @@
-let calculator = new Calculator();
+const calculator = new Calculator();
 
 function Calculator() {
     this.add = (a, b) => a + b;
