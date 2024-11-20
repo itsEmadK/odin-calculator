@@ -39,6 +39,15 @@ operatorButtons.forEach((btn) => {
                 B = null;
                 operator = newOperator;
             }
+        } else {
+            calcMiniDisplay.innerHTML = A;
+            calcMiniDisplay.innerHTML += " " + operator + " ";
+            calcMiniDisplay.innerHTML += B;
+            calcMiniDisplay.innerHTML += " =";
+            A = calculator.operate(A, B, operator);
+            calcDisplay.innerText = A;
+            B = null;
+            operator = null;
         }
     })
 });
