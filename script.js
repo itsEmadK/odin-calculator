@@ -4,12 +4,24 @@ const CALCULATOR_DISPLAY_SELECTOR = ".calculator-display";
 const CALCULATOR_MINI_DISPLAY_SELECTOR = ".calculator-mini-display";
 
 const calculator = new Calculator();
-let A, B, operator = null;
+let [A, B, operator] = [null, null, null];
 
 const calcDisplay = document.querySelector(CALCULATOR_DISPLAY_SELECTOR);
 const calcMiniDisplay = document.querySelector(CALCULATOR_MINI_DISPLAY_SELECTOR);
 const digitButtons = document.querySelectorAll(DIGIT_BUTTON_SELECTOR);
 const operatorButtons = document.querySelectorAll(OPERATOR_BUTTON_SELECTOR);
+
+digitButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        const digit = e.target.innerText;
+        if (operator === null) {
+            A = +((A ?? "") + digit);
+            calcDisplay.innerText = A;
+        } else {
+            B = +((B ?? "") + digit);
+        }
+    });
+});
 
 function Calculator() {
     this.add = (a, b) => a + b;
