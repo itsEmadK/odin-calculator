@@ -19,6 +19,7 @@ digitButtons.forEach((btn) => {
             calcDisplay.innerText = A;
         } else {
             B = +((B ?? "") + digit);
+            calcDisplay.innerText = B;
         }
     });
 });
