@@ -44,14 +44,17 @@ operatorButtons.forEach((btn) => {
                 operator = newOperator;
             }
         } else {
-            calcMiniDisplay.innerHTML = A;
-            calcMiniDisplay.innerHTML += " " + operator + " ";
-            calcMiniDisplay.innerHTML += B;
-            calcMiniDisplay.innerHTML += " =";
-            A = calculator.operate(A, B, operator);
-            calcDisplay.innerText = A;
-            B = null;
-            operator = null;
+            if (B !== null) {
+                calcMiniDisplay.innerHTML = A;
+                calcMiniDisplay.innerHTML += " " + operator + " ";
+                calcMiniDisplay.innerHTML += B;
+                calcMiniDisplay.innerHTML += " =";
+                A = calculator.operate(A, B, operator);
+                calcDisplay.innerText = A;
+                B = null;
+                operator = null;
+            }
+
         }
     })
 });
