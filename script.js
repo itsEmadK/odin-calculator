@@ -44,20 +44,20 @@ operatorButtons.forEach((btn) => {
 });
 
 function Calculator() {
-    this.add = (a, b) => a + b;
+    this.add = (a, b) => +a + +b;
     this.sub = (a, b) => a - b;
     this.multiply = (a, b) => a * b;
     this.divide = (a, b) => a / b;
     this.operate = function (a, b, operator) {
         switch (operator) {
             case "+":
-                return this.add(a, b);
+                return +this.add(a, b).toFixed(5);
             case "-":
-                return this.sub(a, b);
+                return +this.sub(a, b).toFixed(5);
             case "×":
-                return this.multiply(a, b);
+                return +this.multiply(a, b).toFixed(5);
             case "÷":
-                return this.divide(a, b).toFixed(5);
+                return +this.divide(a, b).toFixed(5);
             default:
                 break;
         }
