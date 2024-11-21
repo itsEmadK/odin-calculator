@@ -30,6 +30,10 @@ When the user clicks a button:
             remove the last digit of B
             call UPDATE-DISPLAYS
 
+    else if the button is decimal point:
+        if A is NULL:
+            
+
 
     UPDATE-DISPLAYS:
         if A is NULL:
