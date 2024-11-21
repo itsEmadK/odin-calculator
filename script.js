@@ -31,6 +31,10 @@ clearButton.addEventListener("click", () => {
 
 backspaceButton.addEventListener("click", () => onBackSpace());
 
+
+document.addEventListener("keydown", (e) => onKeyDown(e.key));
+
+
 function Calculator() {
     this.add = (a, b) => +a + +b;
     this.sub = (a, b) => a - b;
@@ -116,5 +120,23 @@ function updateDisplays() {
             }
             calcMiniDisplay.innerText = A + " " + operator;
         }
+    }
+}
+
+function onKeyDown(key) {
+    if (key <= "9" && key >= "0") {
+        onDigitEntered(key);
+    } else if (["+", "-", "/", "*", "=", "Enter"].includes(key)) {
+        let enteredOperator = key;
+        if (enteredOperator === "/") {
+            enteredOperator = "÷";
+        } else if (enteredOperator === "*") {
+            enteredOperator = "×";
+        } else if (enteredOperator === "Enter") {
+            enteredOperator = "=";
+        }
+        onOperatorEntered(enteredOperator);
+    } else if (key === "Backspace") {
+        onBackSpace();
     }
 }
