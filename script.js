@@ -62,7 +62,7 @@ function onDigitEntered(digit) {
     } else {
         B = +((B ?? "") + digit);
     }
-    updateDisplays();
+    updateDisplays(false);
 }
 
 function onOperatorEntered(inputOperator) {
@@ -75,15 +75,15 @@ function onOperatorEntered(inputOperator) {
                 B = null;
                 operator = inputOperator;
             }
+            updateDisplays(false);
         } else {
             if (B !== null) {
                 A = calculator.operate(A, B, operator);
-                B = null;
                 operator = null;
+                updateDisplays(true);
+                B = null;
             }
-
         }
-        updateDisplays();
     }
 }
 
@@ -101,17 +101,21 @@ function onBackSpace() {
             B = (bStr === "" || isNaN(bStr)) ? null : +bStr;
         }
     }
-    updateDisplays();
+    updateDisplays(false);
 }
 
-function updateDisplays() {
+function updateDisplays(operatorIsEquals) {
     if (A === null) {
         calcDisplay.innerText = "0";
         calcMiniDisplay.innerText = "0";
     } else {
         if (operator === null) {
+            if (operatorIsEquals) {
+                calcMiniDisplay.innerText += " " + B + " =";
+            } else {
+                calcMiniDisplay.innerText = A;
+            }
             calcDisplay.innerText = A;
-            calcMiniDisplay.innerText = A;
         } else {
             if (B === null) {
                 calcDisplay.innerText = "0";
