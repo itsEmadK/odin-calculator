@@ -16,17 +16,7 @@ const clearButton = document.querySelector(CLEAR_BUTTON_SELECTOR);
 const backspaceButton = document.querySelector(BACKSPACE_BUTTON_SELECTOR);
 
 digitButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-        const digit = e.target.innerText;
-        if (operator === null) {
-            A = +((A ?? "") + digit);
-            calcDisplay.innerText = A;
-            calcMiniDisplay.innerHTML = A;
-        } else {
-            B = +((B ?? "") + digit);
-            calcDisplay.innerText = B;
-        }
-    });
+    btn.addEventListener("click", (e) => onDigitEntered(e.target.innerText))
 });
 
 operatorButtons.forEach((btn) => {
@@ -84,4 +74,15 @@ function Calculator() {
                 break;
         }
     };
+}
+
+function onDigitEntered(digit) {
+    if (operator === null) {
+        A = +((A ?? "") + digit);
+        calcDisplay.innerText = A;
+        calcMiniDisplay.innerHTML = A;
+    } else {
+        B = +((B ?? "") + digit);
+        calcDisplay.innerText = B;
+    }
 }
