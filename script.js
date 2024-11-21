@@ -29,6 +29,8 @@ clearButton.addEventListener("click", () => {
     [A, B, operator] = [null, null, null];
 })
 
+backspaceButton.addEventListener("click", () => onBackSpace());
+
 function Calculator() {
     this.add = (a, b) => +a + +b;
     this.sub = (a, b) => a - b;
@@ -85,5 +87,20 @@ function onOperatorEntered(inputOperator) {
             operator = null;
         }
 
+    }
+}
+
+function onBackSpace() {
+    if (operator === null) {
+        let aStr = String(A);
+        aStr = aStr.slice(0, aStr.length - 1);
+        A = isNaN(+aStr) ? null : +aStr;
+        calcDisplay.innerText = (A ?? "0");
+        calcMiniDisplay.innerText = (A ?? "0");
+    } else {
+        let bStr = String(B);
+        bStr = bStr.slice(0, bStr.length - 1);
+        B = isNaN(+bStr) ? null : +bStr;
+        calcDisplay.innerText = (B ?? "0");
     }
 }

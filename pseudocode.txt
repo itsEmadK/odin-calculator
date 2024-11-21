@@ -26,6 +26,9 @@ When the user clicks a button:
         if OPERATOR is NULL:
             remove the last digit of A
             show A on the DISPLAY
+            show A on the MINI-DISPLAY
         else:
             remove the last digit of B
             show B on the DISPLAY
+            show A on the MINI-DISPLAY
+            append OPERATOR to the MINI-DISPLAY
