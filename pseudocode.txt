@@ -4,31 +4,46 @@ When the user clicks a button:
     if the button is a digit:
         if OPERATOR is NULL:
             append the new digit to A
-            show A on the DISPLAY
+            call UPDATE-DISPLAYS
         else:
             append the new digit to B
-            show B on the DISPLAY
+            call UPDATE-DISPLAYS
 
     else if the button is an operator:
         if B is NULL:
             assign the new operator to OPERATOR
         else:
             assign (A OPERATOR B) to A
-            show A on the DISPLAY
+            call UPDATE-DISPLAYS
             assign NULL to B
             assign the new operator to OPERATOR
 
     else if the button is ‘clear’:
         assign NULL to A, B, OPERATOR
-        clear the DISPLAY
+        call UPDATE-DISPLAYS
 
     else if the button is 'backspace':
         if OPERATOR is NULL:
             remove the last digit of A
-            show A on the DISPLAY
-            show A on the MINI-DISPLAY
+            call UPDATE-DISPLAYS
         else:
             remove the last digit of B
-            show B on the DISPLAY
-            show A on the MINI-DISPLAY
-            append OPERATOR to the MINI-DISPLAY
+            call UPDATE-DISPLAYS
+
+
+    UPDATE-DISPLAYS:
+        if A is NULL:
+            show "0" on DISPLAY
+            show "0" on MINI-DISPLAY
+        else:
+            if operator is NULL:
+                show A on DISPLAY
+                show A on MINI-DISPLAY
+            else:
+                show A on the MINI-DISPLAY
+                append OPERATOR to the MINI-DISPLAY
+
+                if B is NULL:
+                    show "0" on DISPLAY
+                else:
+                    show B on DISPLAY
