@@ -20,33 +20,7 @@ digitButtons.forEach((btn) => {
 });
 
 operatorButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-        let newOperator = e.target.innerText;
-        if (newOperator != "=") {
-            if (B === null) {
-                operator = newOperator;
-                calcMiniDisplay.innerHTML = A + " " + newOperator;
-            } else {
-                A = calculator.operate(A, B, operator);
-                calcDisplay.innerText = A;
-                calcMiniDisplay.innerHTML = A + " " + newOperator;
-                B = null;
-                operator = newOperator;
-            }
-        } else {
-            if (B !== null) {
-                calcMiniDisplay.innerHTML = A;
-                calcMiniDisplay.innerHTML += " " + operator + " ";
-                calcMiniDisplay.innerHTML += B;
-                calcMiniDisplay.innerHTML += " =";
-                A = calculator.operate(A, B, operator);
-                calcDisplay.innerText = A;
-                B = null;
-                operator = null;
-            }
-
-        }
-    })
+    btn.addEventListener("click", (e) => onOperatorEntered(e.target.innerText))
 });
 
 clearButton.addEventListener("click", () => {
@@ -84,5 +58,32 @@ function onDigitEntered(digit) {
     } else {
         B = +((B ?? "") + digit);
         calcDisplay.innerText = B;
+    }
+}
+
+function onOperatorEntered(inputOperator) {
+    if (inputOperator != "=") {
+        if (B === null) {
+            operator = inputOperator;
+            calcMiniDisplay.innerHTML = A + " " + inputOperator;
+        } else {
+            A = calculator.operate(A, B, operator);
+            calcDisplay.innerText = A;
+            calcMiniDisplay.innerHTML = A + " " + inputOperator;
+            B = null;
+            operator = inputOperator;
+        }
+    } else {
+        if (B !== null) {
+            calcMiniDisplay.innerHTML = A;
+            calcMiniDisplay.innerHTML += " " + operator + " ";
+            calcMiniDisplay.innerHTML += B;
+            calcMiniDisplay.innerHTML += " =";
+            A = calculator.operate(A, B, operator);
+            calcDisplay.innerText = A;
+            B = null;
+            operator = null;
+        }
+
     }
 }
