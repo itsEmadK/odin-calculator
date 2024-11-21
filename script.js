@@ -67,6 +67,7 @@ function onOperatorEntered(inputOperator) {
     if (inputOperator != "=") {
         if (B === null) {
             operator = inputOperator;
+            calcDisplay.innerText = "0";
             calcMiniDisplay.innerHTML = A + " " + inputOperator;
         } else {
             A = calculator.operate(A, B, operator);
@@ -94,13 +95,13 @@ function onBackSpace() {
     if (operator === null) {
         let aStr = String(A);
         aStr = aStr.slice(0, aStr.length - 1);
-        A = isNaN(+aStr) ? null : +aStr;
+        A = (aStr === "" || isNaN(aStr)) ? null : +aStr;
         calcDisplay.innerText = (A ?? "0");
         calcMiniDisplay.innerText = (A ?? "0");
     } else {
         let bStr = String(B);
         bStr = bStr.slice(0, bStr.length - 1);
-        B = isNaN(+bStr) ? null : +bStr;
+        B = (bStr === "" || isNaN(bStr)) ? null : +bStr;
         calcDisplay.innerText = (B ?? "0");
     }
 }
