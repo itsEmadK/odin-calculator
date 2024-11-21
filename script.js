@@ -99,9 +99,15 @@ function onBackSpace() {
         calcDisplay.innerText = (A ?? "0");
         calcMiniDisplay.innerText = (A ?? "0");
     } else {
-        let bStr = String(B);
-        bStr = bStr.slice(0, bStr.length - 1);
-        B = (bStr === "" || isNaN(bStr)) ? null : +bStr;
-        calcDisplay.innerText = (B ?? "0");
+        if (B === null) {
+            operator = null;
+            calcDisplay.innerText = A;
+            calcMiniDisplay.innerText = A;
+        } else {
+            let bStr = String(B);
+            bStr = bStr.slice(0, bStr.length - 1);
+            B = (bStr === "" || isNaN(bStr)) ? null : +bStr;
+            calcDisplay.innerText = (B ?? "0");
+        }
     }
 }
