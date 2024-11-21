@@ -56,7 +56,7 @@ function onDigitEntered(digit) {
     if (operator === null) {
         A = +((A ?? "") + digit);
         calcDisplay.innerText = A;
-        calcMiniDisplay.innerHTML = A;
+        calcMiniDisplay.innerText = A;
     } else {
         B = +((B ?? "") + digit);
         calcDisplay.innerText = B;
@@ -68,20 +68,20 @@ function onOperatorEntered(inputOperator) {
         if (B === null) {
             operator = inputOperator;
             calcDisplay.innerText = "0";
-            calcMiniDisplay.innerHTML = A + " " + inputOperator;
+            calcMiniDisplay.innerText = A + " " + inputOperator;
         } else {
             A = calculator.operate(A, B, operator);
             calcDisplay.innerText = A;
-            calcMiniDisplay.innerHTML = A + " " + inputOperator;
+            calcMiniDisplay.innerText = A + " " + inputOperator;
             B = null;
             operator = inputOperator;
         }
     } else {
         if (B !== null) {
-            calcMiniDisplay.innerHTML = A;
-            calcMiniDisplay.innerHTML += " " + operator + " ";
-            calcMiniDisplay.innerHTML += B;
-            calcMiniDisplay.innerHTML += " =";
+            calcMiniDisplay.innerText = A;
+            calcMiniDisplay.innerText += " " + operator + " ";
+            calcMiniDisplay.innerText += B;
+            calcMiniDisplay.innerText += " =";
             A = calculator.operate(A, B, operator);
             calcDisplay.innerText = A;
             B = null;
