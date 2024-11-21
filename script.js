@@ -62,23 +62,25 @@ function onDigitEntered(digit) {
 }
 
 function onOperatorEntered(inputOperator) {
-    if (inputOperator != "=") {
-        if (B === null) {
-            operator = inputOperator;
+    if (A !== null) {
+        if (inputOperator != "=") {
+            if (B === null) {
+                operator = inputOperator;
+            } else {
+                A = calculator.operate(A, B, operator);
+                B = null;
+                operator = inputOperator;
+            }
         } else {
-            A = calculator.operate(A, B, operator);
-            B = null;
-            operator = inputOperator;
-        }
-    } else {
-        if (B !== null) {
-            A = calculator.operate(A, B, operator);
-            B = null;
-            operator = null;
-        }
+            if (B !== null) {
+                A = calculator.operate(A, B, operator);
+                B = null;
+                operator = null;
+            }
 
+        }
+        updateDisplays();
     }
-    updateDisplays();
 }
 
 function onBackSpace() {
