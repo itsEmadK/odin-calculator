@@ -55,40 +55,30 @@ function Calculator() {
 function onDigitEntered(digit) {
     if (operator === null) {
         A = +((A ?? "") + digit);
-        calcDisplay.innerText = A;
-        calcMiniDisplay.innerText = A;
     } else {
         B = +((B ?? "") + digit);
-        calcDisplay.innerText = B;
     }
+    updateDisplays();
 }
 
 function onOperatorEntered(inputOperator) {
     if (inputOperator != "=") {
         if (B === null) {
             operator = inputOperator;
-            calcDisplay.innerText = "0";
-            calcMiniDisplay.innerText = A + " " + inputOperator;
         } else {
             A = calculator.operate(A, B, operator);
-            calcDisplay.innerText = A;
-            calcMiniDisplay.innerText = A + " " + inputOperator;
             B = null;
             operator = inputOperator;
         }
     } else {
         if (B !== null) {
-            calcMiniDisplay.innerText = A;
-            calcMiniDisplay.innerText += " " + operator + " ";
-            calcMiniDisplay.innerText += B;
-            calcMiniDisplay.innerText += " =";
             A = calculator.operate(A, B, operator);
-            calcDisplay.innerText = A;
             B = null;
             operator = null;
         }
 
     }
+    updateDisplays();
 }
 
 function onBackSpace() {
@@ -96,18 +86,33 @@ function onBackSpace() {
         let aStr = String(A);
         aStr = aStr.slice(0, aStr.length - 1);
         A = (aStr === "" || isNaN(aStr)) ? null : +aStr;
-        calcDisplay.innerText = (A ?? "0");
-        calcMiniDisplay.innerText = (A ?? "0");
     } else {
         if (B === null) {
             operator = null;
-            calcDisplay.innerText = A;
-            calcMiniDisplay.innerText = A;
         } else {
             let bStr = String(B);
             bStr = bStr.slice(0, bStr.length - 1);
             B = (bStr === "" || isNaN(bStr)) ? null : +bStr;
-            calcDisplay.innerText = (B ?? "0");
+        }
+    }
+    updateDisplays();
+}
+
+function updateDisplays() {
+    if (A === null) {
+        calcDisplay.innerText = "0";
+        calcMiniDisplay.innerText = "0";
+    } else {
+        if (operator === null) {
+            calcDisplay.innerText = A;
+            calcMiniDisplay.innerText = A;
+        } else {
+            if (B === null) {
+                calcDisplay.innerText = "0";
+            } else {
+                calcDisplay.innerText = B;
+            }
+            calcMiniDisplay.innerText = A + " " + operator;
         }
     }
 }
