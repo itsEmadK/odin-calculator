@@ -32,7 +32,10 @@ clearButton.addEventListener("click", () => {
 backspaceButton.addEventListener("click", () => onBackSpace());
 
 
-document.addEventListener("keydown", (e) => onKeyDown(e.key));
+document.addEventListener("keydown", (e) => {
+    e.preventDefault();
+    onKeyDown(e.key);
+});
 
 
 function Calculator() {
