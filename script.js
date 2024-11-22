@@ -64,12 +64,15 @@ function Calculator() {
 
 function onDigitEntered(digit) {
     if (operator === null) {
+        //User is still entering A
         if (A === "0") {
+            //Remove the redundant starting zero
             A = digit;
         } else {
             A += digit;
         }
     } else {
+        //User is entering B
         if (B === "0") {
             B = digit;
         } else {
@@ -83,13 +86,16 @@ function onOperatorEntered(inputOperator) {
     if (A !== "") {
         if (inputOperator != "=") {
             if (B === "") {
+                //User just entered the new operator
                 operator = inputOperator;
             } else {
+                //User wants the result of (A old_operator B) for this new operator calculation
                 const result = calculator.operate(A, B, operator);
                 if (result === null) {
-                    //division by zero occurred.
+                    //Division by zero occurred.
                     alert("Can't divide by zero, friendo");
                 } else {
+                    //A = (A old_operator B) - user uses this as the new A for his new operator
                     A = String(result);
                     B = "";
                     operator = inputOperator;
@@ -97,7 +103,8 @@ function onOperatorEntered(inputOperator) {
             }
             updateDisplays(false);
         } else {
-            if (B !== "") {
+            //User wants the result of the (A old_operator B)
+            if (B !== "") { //If B is empty, the equals should not do anything
                 const result = calculator.operate(A, B, operator);
                 if (result === null) {
                     //division by zero occurred.
@@ -123,9 +130,10 @@ function onBackSpace() {
     if (operator === null) {
         let aStr = String(A);
         aStr = aStr.slice(0, aStr.length - 1);
-        A = (isNaN(aStr)) ? "" : aStr;
+        A = (isNaN(aStr)) ? "" : aStr; //if A is Infinity, user can remove it by just one backspace
     } else {
         if (B === "") {
+            //User wants to remove the operator
             operator = null;
         } else {
             let bStr = String(B);
@@ -163,7 +171,9 @@ function updateDisplays(operatorIsEquals) {
         calcMiniDisplay.innerText = "\n";
     } else {
         if (operator === null) {
+            //Should only display A
             if (operatorIsEquals) {
+                //Give the user the details of his latest calculation
                 calcMiniDisplay.innerText += " " + B + " =";
             } else {
                 calcMiniDisplay.innerText = A;
@@ -171,6 +181,7 @@ function updateDisplays(operatorIsEquals) {
             calcDisplay.innerText = A;
         } else {
             if (B === "") {
+                //User entered A and operator, and is starting to enter B
                 calcDisplay.innerText = "\n";
             } else {
                 calcDisplay.innerText = B;
