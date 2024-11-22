@@ -7,7 +7,7 @@ const BACKSPACE_BUTTON_SELECTOR = ".button.backspace";
 const DECIMAL_POINT_BUTTON_SELECTOR = ".button.decimal-point";
 
 const calculator = new Calculator();
-let [A, B, operator] = [null, null, null];
+let [A, B, operator] = ["", "", null];
 
 const calcDisplay = document.querySelector(CALCULATOR_DISPLAY_SELECTOR);
 const calcMiniDisplay = document.querySelector(CALCULATOR_MINI_DISPLAY_SELECTOR);
@@ -26,9 +26,9 @@ operatorButtons.forEach((btn) => {
 });
 
 clearButton.addEventListener("click", () => {
-    calcDisplay.innerText = "0";
-    calcMiniDisplay.innerText = "0";
-    [A, B, operator] = [null, null, null];
+    calcDisplay.innerText = "\n";
+    calcMiniDisplay.innerText = "\n";
+    [A, B, operator] = ["", "", null];
 })
 
 backspaceButton.addEventListener("click", () => onBackSpace());
@@ -63,56 +63,57 @@ function Calculator() {
 
 function onDigitEntered(digit) {
     if (operator === null) {
-        A = +((A ?? "") + digit);
+        A = ((A ?? "") + digit);
     } else {
-        B = +((B ?? "") + digit);
+        B = ((B ?? "") + digit);
     }
     updateDisplays(false);
 }
 
 function onOperatorEntered(inputOperator) {
-    if (A !== null) {
+    if (A !== "") {
         if (inputOperator != "=") {
-            if (B === null) {
+            if (B === "") {
                 operator = inputOperator;
             } else {
                 A = calculator.operate(A, B, operator);
-                B = null;
+                B = "";
                 operator = inputOperator;
             }
             updateDisplays(false);
         } else {
-            if (B !== null) {
+            if (B !== "") {
                 A = calculator.operate(A, B, operator);
                 operator = null;
                 updateDisplays(true);
-                B = null;
+                B = "";
             }
         }
     }
+    console.log(A, B, operator);
 }
 
 function onBackSpace() {
     if (operator === null) {
         let aStr = String(A);
         aStr = aStr.slice(0, aStr.length - 1);
-        A = (aStr === "" || isNaN(aStr)) ? null : +aStr;
+        A = (isNaN(aStr)) ? "" : aStr;
     } else {
-        if (B === null) {
+        if (B === "") {
             operator = null;
         } else {
             let bStr = String(B);
             bStr = bStr.slice(0, bStr.length - 1);
-            B = (bStr === "" || isNaN(bStr)) ? null : +bStr;
+            B = (isNaN(bStr)) ? "" : bStr;
         }
     }
     updateDisplays(false);
 }
 
 function updateDisplays(operatorIsEquals) {
-    if (A === null) {
-        calcDisplay.innerText = "0";
-        calcMiniDisplay.innerText = "0";
+    if (A === "") {
+        calcDisplay.innerText = "\n";
+        calcMiniDisplay.innerText = "\n";
     } else {
         if (operator === null) {
             if (operatorIsEquals) {
@@ -122,8 +123,8 @@ function updateDisplays(operatorIsEquals) {
             }
             calcDisplay.innerText = A;
         } else {
-            if (B === null) {
-                calcDisplay.innerText = "0";
+            if (B === "") {
+                calcDisplay.innerText = "\n";
             } else {
                 calcDisplay.innerText = B;
             }
