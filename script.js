@@ -34,24 +34,7 @@ clearButton.addEventListener("click", () => {
 backspaceButton.addEventListener("click", () => onBackSpace());
 
 decimalPointButton.addEventListener("click", () => {
-    if (operator === null) {
-        if (A === "") {
-            A = "0.";
-        } else {
-            if (!A.includes(".")) {
-                A += ".";
-            }
-        }
-    } else {
-        if (B === "") {
-            B = "0.";
-        } else {
-            if (!B.includes(".")) {
-                B += ".";
-            }
-        }
-    }
-    updateDisplays(false);
+    onDecimalPoint();
 });
 
 document.addEventListener("keydown", (e) => {
@@ -133,6 +116,27 @@ function onBackSpace() {
             let bStr = String(B);
             bStr = bStr.slice(0, bStr.length - 1);
             B = (isNaN(bStr)) ? "" : bStr;
+        }
+    }
+    updateDisplays(false);
+}
+
+function onDecimalPoint() {
+    if (operator === null) {
+        if (A === "") {
+            A = "0.";
+        } else {
+            if (!A.includes(".")) {
+                A += ".";
+            }
+        }
+    } else {
+        if (B === "") {
+            B = "0.";
+        } else {
+            if (!B.includes(".")) {
+                B += ".";
+            }
         }
     }
     updateDisplays(false);
