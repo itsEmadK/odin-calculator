@@ -104,14 +104,14 @@ function onOperatorEntered(inputOperator) {
             if (B === "") {
                 operator = inputOperator;
             } else {
-                A = calculator.operate(A, B, operator);
+                A = String(calculator.operate(A, B, operator));
                 B = "";
                 operator = inputOperator;
             }
             updateDisplays(false);
         } else {
             if (B !== "") {
-                A = calculator.operate(A, B, operator);
+                A = String(calculator.operate(A, B, operator));
                 operator = null;
                 updateDisplays(true);
                 B = "";
