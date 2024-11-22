@@ -63,9 +63,17 @@ function Calculator() {
 
 function onDigitEntered(digit) {
     if (operator === null) {
-        A = ((A ?? "") + digit);
+        if (A === "0") {
+            A = digit;
+        } else {
+            A += digit;
+        }
     } else {
-        B = ((B ?? "") + digit);
+        if (B === "0") {
+            B = digit;
+        } else {
+            B += digit;
+        }
     }
     updateDisplays(false);
 }
