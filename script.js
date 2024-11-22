@@ -26,9 +26,7 @@ operatorButtons.forEach((btn) => {
 });
 
 clearButton.addEventListener("click", () => {
-    calcDisplay.innerText = "\n";
-    calcMiniDisplay.innerText = "\n";
-    [A, B, operator] = ["", "", null];
+    onClearDisplay();
 })
 
 backspaceButton.addEventListener("click", () => onBackSpace());
@@ -101,6 +99,12 @@ function onOperatorEntered(inputOperator) {
             }
         }
     }
+}
+
+function onClearDisplay() {
+    calcDisplay.innerText = "\n";
+    calcMiniDisplay.innerText = "\n";
+    [A, B, operator] = ["", "", null];
 }
 
 function onBackSpace() {
