@@ -33,6 +33,26 @@ clearButton.addEventListener("click", () => {
 
 backspaceButton.addEventListener("click", () => onBackSpace());
 
+decimalPointButton.addEventListener("click", () => {
+    if (operator === null) {
+        if (A === "") {
+            A = "0.";
+        } else {
+            if (!A.includes(".")) {
+                A += ".";
+            }
+        }
+    } else {
+        if (B === "") {
+            B = "0.";
+        } else {
+            if (!B.includes(".")) {
+                B += ".";
+            }
+        }
+    }
+    updateDisplays(false);
+});
 
 document.addEventListener("keydown", (e) => {
     e.preventDefault();
