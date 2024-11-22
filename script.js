@@ -55,7 +55,7 @@ function Calculator() {
             case "×":
                 return +this.multiply(a, b).toFixed(5);
             case "÷":
-                return +this.divide(a, b).toFixed(5);
+                return b == 0 ? null : +this.divide(a, b).toFixed(5);
             default:
                 break;
         }
@@ -85,17 +85,29 @@ function onOperatorEntered(inputOperator) {
             if (B === "") {
                 operator = inputOperator;
             } else {
-                A = String(calculator.operate(A, B, operator));
-                B = "";
-                operator = inputOperator;
+                const result = calculator.operate(A, B, operator);
+                if (result === null) {
+                    //division by zero occurred.
+                    alert("Can't divide by zero, friendo");
+                } else {
+                    A = String(result);
+                    B = "";
+                    operator = inputOperator;
+                }
             }
             updateDisplays(false);
         } else {
             if (B !== "") {
-                A = String(calculator.operate(A, B, operator));
-                operator = null;
-                updateDisplays(true);
-                B = "";
+                const result = calculator.operate(A, B, operator);
+                if (result === null) {
+                    //division by zero occurred.
+                    alert("Can't divide by zero, friendo");
+                } else {
+                    A = String(result);
+                    operator = null;
+                    updateDisplays(true);
+                    B = "";
+                }
             }
         }
     }
