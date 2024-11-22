@@ -36,7 +36,13 @@ decimalPointButton.addEventListener("click", () => {
 });
 
 document.addEventListener("keydown", (e) => {
-    e.preventDefault();
+    const shouldPreventDefault = ("1234567890+-/*.".includes(e.key) ||
+        ["Enter", "Backspace"].includes(e.key))
+        && !e.ctrlKey;
+    console.log(e.ctrlKey, shouldPreventDefault);
+    if (shouldPreventDefault) {
+        e.preventDefault();
+    }
     onKeyDown(e.key);
 });
 
