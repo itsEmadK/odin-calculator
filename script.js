@@ -5,6 +5,10 @@ const CALCULATOR_MINI_DISPLAY_SELECTOR = ".calculator-mini-display";
 const CLEAR_BUTTON_SELECTOR = ".button.clear";
 const BACKSPACE_BUTTON_SELECTOR = ".button.backspace";
 const DECIMAL_POINT_BUTTON_SELECTOR = ".button.decimal-point";
+const BUTTON_SELECTOR = ".button";
+
+const CSS_HOVERED_CLASS = "hovered";
+const CSS_MOUSEDOWN_CLASS = "mouse-down";
 
 const calculator = new Calculator();
 let [A, B, operator] = ["", "", null];
@@ -16,6 +20,7 @@ const operatorButtons = document.querySelectorAll(OPERATOR_BUTTON_SELECTOR);
 const clearButton = document.querySelector(CLEAR_BUTTON_SELECTOR);
 const backspaceButton = document.querySelector(BACKSPACE_BUTTON_SELECTOR);
 const decimalPointButton = document.querySelector(DECIMAL_POINT_BUTTON_SELECTOR);
+const allButtons = document.querySelectorAll(BUTTON_SELECTOR);
 
 digitButtons.forEach((btn) => {
     btn.addEventListener("click", (e) => onDigitEntered(e.target.innerText))
@@ -45,6 +50,27 @@ document.addEventListener("keydown", (e) => {
     }
     onKeyDown(e.key);
 });
+
+
+
+allButtons.forEach((
+    (btn) => {
+        btn.addEventListener("mouseenter", (e) => {
+            e.target.classList.add(CSS_HOVERED_CLASS);
+        });
+        btn.addEventListener("mouseleave", (e) => {
+            e.target.classList.remove(CSS_HOVERED_CLASS);
+            e.target.classList.remove(CSS_MOUSEDOWN_CLASS);
+        });
+        btn.addEventListener("mousedown", (e) => {
+            e.target.classList.add(CSS_MOUSEDOWN_CLASS);
+        });
+        btn.addEventListener("mouseup", (e) => {
+            e.target.classList.remove(CSS_MOUSEDOWN_CLASS);
+        });
+    }
+));
+
 
 
 function Calculator() {
