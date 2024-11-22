@@ -179,5 +179,7 @@ function onKeyDown(key) {
         onOperatorEntered(enteredOperator);
     } else if (key === "Backspace") {
         onBackSpace();
+    } else if (key === ".") {
+        onDecimalPoint();
     }
 }
