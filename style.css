@@ -73,13 +73,26 @@ body {
     background-color: rgb(221 221 221);
 }
 
+.button.digit.mouse-down,
+.button.operator.mouse-down,
+.button.decimal-point.mouse-down {
+    background-color: rgb(203, 203, 203);
+}
 
 .button.clear.hovered {
     background-color: #e9593f;
 }
 
+.button.clear.mouse-down {
+    background-color: #db523a;
+}
+
 .button.backspace.hovered {
     background-color: #5a84d0;
+}
+
+.button.backspace.mouse-down {
+    background-color: #5177bf;
 }
 
 .footer {
