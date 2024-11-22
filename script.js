@@ -101,7 +101,6 @@ function onOperatorEntered(inputOperator) {
             }
         }
     }
-    console.log(A, B, operator);
 }
 
 function onBackSpace() {
